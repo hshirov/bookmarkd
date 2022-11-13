@@ -1,4 +1,4 @@
-import axiosInstance from '../axios';
+import axiosInstance from './axios';
 
 const fields = 'volumeInfo(title,authors,description,pageCount,categories,imageLinks)';
 

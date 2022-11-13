@@ -1,11 +1,12 @@
-import { Text, View } from 'react-native';
+import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import Routes from './src/navigation/Routes';
 
 const App = () => (
-  <View>
+  <>
     <StatusBar style="auto" />
-    <Text>Open up App.js to start working on your app!</Text>
-  </View>
+    <Routes />
+  </>
 );
 
 export default App;
