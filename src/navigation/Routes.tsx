@@ -10,7 +10,7 @@ const Routes: React.FC = () => (
   <NavigationContainer>
     <Stack.Navigator
       screenOptions={{
-        header: () => null,
+        headerShown: false,
       }}
     >
       <Stack.Screen name={StackRoute.Tabs} component={TabNavigation} />

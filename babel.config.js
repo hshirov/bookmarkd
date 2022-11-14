@@ -9,9 +9,11 @@ module.exports = function (api) {
         {
           alias: {
             api: './src/api',
+            components: './src/components',
             enums: './src/enums',
             interfaces: './src/interfaces',
             screens: './src/screens',
+            styles: './src/styles',
             types: './src/types',
           },
         },

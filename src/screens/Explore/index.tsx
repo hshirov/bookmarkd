@@ -1,11 +1,12 @@
-import { Text, View } from 'react-native';
 import TabRoute from 'enums/TabRoute.enum';
 import TabNavProps from 'types/navigation/TabNavProps.type';
+import Text from 'components/Base/Text';
+import Container from 'components/Container';
 
 const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => (
-  <View>
+  <Container>
     <Text>Explore screen</Text>
-  </View>
+  </Container>
 );
 
 export default Explore;
