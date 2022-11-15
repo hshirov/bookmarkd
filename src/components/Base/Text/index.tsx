@@ -21,9 +21,11 @@ Text.Paragraph = ({ children }) => <RNText style={[styles.text, styles.paragraph
 const styles = EStyleSheet.create({
   text: {
     color: Theme.colors.text,
+    fontFamily: Theme.fonts.family.openSans,
   },
   heading: {
     fontSize: Theme.fonts.size.large,
+    fontFamily: Theme.fonts.family.playfairDisplay,
   },
   title: {
     fontSize: Theme.fonts.size.medium,
