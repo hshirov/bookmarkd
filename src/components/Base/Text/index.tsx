@@ -24,7 +24,7 @@ const styles = EStyleSheet.create({
     fontFamily: Theme.fonts.family.openSans,
   },
   heading: {
-    fontSize: Theme.fonts.size.large,
+    fontSize: Theme.fonts.size.medium,
     fontFamily: Theme.fonts.family.playfairDisplay,
   },
   title: {
