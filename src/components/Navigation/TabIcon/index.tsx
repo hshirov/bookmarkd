@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 import { Octicons } from '@expo/vector-icons';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import TabRoute from 'enums/TabRoute.enum';
 
 interface TabIconProps {
   color: string;
-  size: number;
   routeName: TabRoute;
+  styles?: EStyleSheet.AnyObject;
 }
 
-const TabIcon: React.FC<TabIconProps> = ({ color, size, routeName }) => {
+const TabIcon: React.FC<TabIconProps> = ({ color, routeName, styles }) => {
   const name = useMemo(() => {
     switch (routeName) {
       case TabRoute.Home:
@@ -18,7 +19,7 @@ const TabIcon: React.FC<TabIconProps> = ({ color, size, routeName }) => {
     }
   }, [routeName]);
 
-  return <Octicons color={color} size={size} name={name} />;
+  return <Octicons color={color} size={25} name={name} style={styles} />;
 };
 
 export default TabIcon;
