@@ -4,7 +4,7 @@ import { ParamListBase, RouteProp } from '@react-navigation/native';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import useTheme from 'hooks/useTheme';
-import Text from 'components/Base/Text';
+import { Text } from 'components/Base';
 
 interface HeaderProps {
   route: RouteProp<ParamListBase, string>;

@@ -7,8 +7,7 @@ import {
 } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import TabRoute from 'enums/TabRoute.enum';
 import TabParamList from 'types/navigation/TabParamList.type';
-import TabBar from 'components/Navigation/TabBar';
-import Header from 'components/Navigation/Header';
+import { Header, TabBar } from 'components/Navigation';
 import Home from 'screens/Home';
 import Explore from 'screens/Explore';
 
