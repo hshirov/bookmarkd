@@ -4,9 +4,9 @@ const fonts = {
     playfairDisplay: 'PlayfairDisplay',
   },
   size: {
-    small: '1rem',
-    medium: '1.5rem',
-    large: '2rem',
+    small: 16,
+    medium: 26,
+    large: 38,
   },
 };
 

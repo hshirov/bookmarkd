@@ -11,6 +11,7 @@ module.exports = function (api) {
             api: './src/api',
             components: './src/components',
             enums: './src/enums',
+            hooks: './src/hooks',
             interfaces: './src/interfaces',
             screens: './src/screens',
             styles: './src/styles',

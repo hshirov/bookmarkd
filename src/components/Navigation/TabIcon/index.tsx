@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
+import { ViewStyle } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
-import EStyleSheet from 'react-native-extended-stylesheet';
 import TabRoute from 'enums/TabRoute.enum';
 
 interface TabIconProps {
   color: string;
   routeName: TabRoute;
-  styles?: EStyleSheet.AnyObject;
+  styles?: ViewStyle;
 }
 
 const TabIcon: React.FC<TabIconProps> = ({ color, routeName, styles }) => {

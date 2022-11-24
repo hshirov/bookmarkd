@@ -1,9 +1,9 @@
 import { Text as RNText } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import Theme from 'styles/theme';
+import useTheme from 'hooks/useTheme';
 
 interface TextProps {
   children: React.ReactNode;
+  style?: any;
 }
 
 export interface TextComponents {
@@ -12,27 +12,65 @@ export interface TextComponents {
   Paragraph: React.FC<TextProps>;
 }
 
-const Text: React.FC<TextProps> & TextComponents = ({ children }) => <RNText style={styles.text}>{children}</RNText>;
+const Text: React.FC<TextProps> & TextComponents = ({ children, style }) => {
+  const { colors, fonts } = useTheme();
 
-Text.Heading = ({ children }) => <RNText style={[styles.text, styles.heading]}>{children}</RNText>;
-Text.Title = ({ children }) => <RNText style={[styles.text, styles.title]}>{children}</RNText>;
-Text.Paragraph = ({ children }) => <RNText style={[styles.text, styles.paragraph]}>{children}</RNText>;
+  return (
+    <RNText
+      style={[
+        {
+          color: colors.text,
+          fontFamily: fonts.family.openSans,
+        },
+        style,
+      ]}
+    >
+      {children}
+    </RNText>
+  );
+};
 
-const styles = EStyleSheet.create({
-  text: {
-    color: Theme.colors.text,
-    fontFamily: Theme.fonts.family.openSans,
-  },
-  heading: {
-    fontSize: Theme.fonts.size.medium,
-    fontFamily: Theme.fonts.family.playfairDisplay,
-  },
-  title: {
-    fontSize: Theme.fonts.size.medium,
-  },
-  paragraph: {
-    fontSize: Theme.fonts.size.small,
-  },
-});
+Text.Heading = ({ children }) => {
+  const { fonts } = useTheme();
+
+  return (
+    <Text
+      style={{
+        fontSize: fonts.size.medium,
+        fontFamily: fonts.family.playfairDisplay,
+      }}
+    >
+      {children}
+    </Text>
+  );
+};
+
+Text.Title = ({ children }) => {
+  const { fonts } = useTheme();
+
+  return (
+    <Text
+      style={{
+        fontSize: fonts.size.medium,
+      }}
+    >
+      {children}
+    </Text>
+  );
+};
+
+Text.Paragraph = ({ children }) => {
+  const { fonts } = useTheme();
+
+  return (
+    <Text
+      style={{
+        fontSize: fonts.size.small,
+      }}
+    >
+      {children}
+    </Text>
+  );
+};
 
 export default Text;

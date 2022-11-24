@@ -1,5 +1,8 @@
+const spacer = 12;
+
 const spacing = {
-  innerPadding: '1.5rem',
+  spacer,
+  innerPadding: spacer,
 };
 
 export default spacing;

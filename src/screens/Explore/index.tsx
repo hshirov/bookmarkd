@@ -5,7 +5,7 @@ import Container from 'components/Base/Container';
 
 const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => (
   <Container>
-    <Text>Explore screen</Text>
+    <Text.Paragraph>Explore screen</Text.Paragraph>
   </Container>
 );
 
