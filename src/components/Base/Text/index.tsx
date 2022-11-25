@@ -33,44 +33,19 @@ const Text: React.FC<TextProps> & TextComponents = ({ children, style }) => {
 Text.Heading = ({ children }) => {
   const { fonts } = useTheme();
 
-  return (
-    <Text
-      style={{
-        fontSize: fonts.size.medium,
-        fontFamily: fonts.family.playfairDisplay,
-      }}
-    >
-      {children}
-    </Text>
-  );
+  return <Text style={{ fontSize: fonts.size.medium, fontFamily: fonts.family.playfairDisplay }}>{children}</Text>;
 };
 
 Text.Title = ({ children }) => {
   const { fonts } = useTheme();
 
-  return (
-    <Text
-      style={{
-        fontSize: fonts.size.medium,
-      }}
-    >
-      {children}
-    </Text>
-  );
+  return <Text style={{ fontSize: fonts.size.medium }}>{children}</Text>;
 };
 
 Text.Paragraph = ({ children }) => {
   const { fonts } = useTheme();
 
-  return (
-    <Text
-      style={{
-        fontSize: fonts.size.small,
-      }}
-    >
-      {children}
-    </Text>
-  );
+  return <Text style={{ fontSize: fonts.size.small }}>{children}</Text>;
 };
 
 export default Text;
