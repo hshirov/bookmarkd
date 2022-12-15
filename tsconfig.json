@@ -8,9 +8,11 @@
       "components/*": ["./src/components/*"],
       "enums/*": ["./src/enums/*"],
       "hooks/*": ["./src/hooks/*"],
+      "interfaces/*": ["./src/interfaces/*"],
       "screens/*": ["./src/screens/*"],
       "styles/*": ["./src/styles/*"],
-      "types/*": ["./src/types/*"]
+      "types/*": ["./src/types/*"],
+      "utils/*": ["./src/utils/*"]
     }
   },
   "typeRoots": ["./src/typings", "./node_modules/@types"],

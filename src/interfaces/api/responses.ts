@@ -4,6 +4,11 @@ export interface GetBookResponse {
   volumeInfo: VolumeInfo;
 }
 
+export interface GetBooksResponseItem {
+  id: string;
+  volumeInfo: VolumeInfo;
+}
+
 export interface GetBooksResponse {
-  items: VolumeInfo[];
+  items: GetBooksResponseItem[];
 }
