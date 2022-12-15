@@ -1,9 +1,9 @@
-import { Text as RNText } from 'react-native';
+import { StyleProp, Text as RNText, TextStyle } from 'react-native';
 import useTheme from 'hooks/useTheme';
 
 interface TextProps {
   children: React.ReactNode;
-  style?: any;
+  style?: StyleProp<TextStyle>;
 }
 
 export interface TextComponents {
@@ -31,21 +31,21 @@ const Text: React.FC<TextProps> & TextComponents = ({ children, style }) => {
 };
 
 Text.Heading = ({ children }) => {
-  const { fonts } = useTheme();
+  const { fonts, sizing } = useTheme();
 
-  return <Text style={{ fontSize: fonts.size.medium, fontFamily: fonts.family.playfairDisplay }}>{children}</Text>;
+  return <Text style={{ fontSize: sizing.fontMedium, fontFamily: fonts.family.playfairDisplay }}>{children}</Text>;
 };
 
 Text.Title = ({ children }) => {
-  const { fonts } = useTheme();
+  const { sizing } = useTheme();
 
-  return <Text style={{ fontSize: fonts.size.medium }}>{children}</Text>;
+  return <Text style={{ fontSize: sizing.fontMedium }}>{children}</Text>;
 };
 
 Text.Paragraph = ({ children }) => {
-  const { fonts } = useTheme();
+  const { sizing } = useTheme();
 
-  return <Text style={{ fontSize: fonts.size.small }}>{children}</Text>;
+  return <Text style={{ fontSize: sizing.fontXSmall }}>{children}</Text>;
 };
 
 export default Text;
