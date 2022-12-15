@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { ActivityIndicator, FlatList, View } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
 import TabRoute from 'enums/TabRoute.enum';
 import TabNavProps from 'types/navigation/TabNavProps.type';
@@ -13,7 +13,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => {
   const { colors, spacing, sizing } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedSearchQuery = useDebounce(searchQuery);
-  const { data, isLoading, fetchNextPage } = useBooksSearch(debouncedSearchQuery);
+  const { data, isLoading, isFetchingNextPage, fetchNextPage } = useBooksSearch(debouncedSearchQuery);
 
   return (
     <Container>
@@ -24,22 +24,20 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => {
         <Input value={searchQuery} onChangeText={setSearchQuery} style={{ flex: 1 }} />
       </View>
       <View>
-        {isLoading ? (
-          <Text.Paragraph>Loading books...</Text.Paragraph>
-        ) : (
-          <FlatList
-            data={data?.pages}
-            renderItem={({ item: page }) => (
-              <View>
-                {page.items?.map((item: GetBooksResponseItem) => (
-                  <Text.Paragraph key={item.id}>{item.volumeInfo.title}</Text.Paragraph>
-                ))}
-              </View>
-            )}
-            onEndReachedThreshold={0.5}
-            onEndReached={() => fetchNextPage()}
-          />
-        )}
+        <FlatList
+          data={data?.pages}
+          renderItem={({ item: page }) => (
+            <View>
+              {page.items?.map((item: GetBooksResponseItem) => (
+                <Text.Paragraph key={item.id}>{item.volumeInfo.title}</Text.Paragraph>
+              ))}
+            </View>
+          )}
+          ListFooterComponent={isLoading || isFetchingNextPage ? <ActivityIndicator /> : null}
+          ListFooterComponentStyle={{ marginTop: spacing.spacer }}
+          onEndReachedThreshold={0.5}
+          onEndReached={() => fetchNextPage()}
+        />
       </View>
     </Container>
   );
