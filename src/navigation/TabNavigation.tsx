@@ -27,6 +27,7 @@ const TabNavigation: React.FC = () => (
   <Tabs.Navigator
     screenOptions={{
       header: ({ route, options }) => CustomHeader(route, options),
+      unmountOnBlur: true,
     }}
     tabBar={({ state, descriptors, navigation }) => CustomTabBar(state, descriptors, navigation)}
   >

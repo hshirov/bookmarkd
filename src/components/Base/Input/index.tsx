@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleProp, TextInput, TextStyle } from 'react-native';
 import useTheme from 'hooks/useTheme';
 
@@ -5,9 +6,11 @@ interface InputProps {
   value: string;
   style?: StyleProp<TextStyle>;
   onChangeText: (text: string) => void;
+  // eslint-disable-next-line
+  ref?: React.Ref<TextInput>;
 }
 
-const Input: React.FC<InputProps> = ({ value, style, onChangeText }) => {
+const Input: React.FC<InputProps> = React.forwardRef<TextInput, InputProps>(({ value, style, onChangeText }, ref) => {
   const { colors, spacing, sizing } = useTheme();
 
   return (
@@ -24,9 +27,10 @@ const Input: React.FC<InputProps> = ({ value, style, onChangeText }) => {
       ]}
       keyboardAppearance="dark"
       value={value}
+      ref={ref}
       onChangeText={onChangeText}
     />
   );
-};
+});
 
 export default Input;

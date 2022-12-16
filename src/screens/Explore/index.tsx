@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { ActivityIndicator, FlatList, View } from 'react-native';
+import { useState, useCallback, useRef } from 'react';
+import { ActivityIndicator, FlatList, View, TextInput } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
 import TabRoute from 'enums/TabRoute.enum';
 import TabNavProps from 'types/navigation/TabNavProps.type';
@@ -11,9 +12,16 @@ import { Text, Container, Input } from 'components/Base';
 
 const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => {
   const { colors, spacing, sizing } = useTheme();
+  const searchInputRef = useRef<TextInput>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedSearchQuery = useDebounce(searchQuery);
   const { data, isLoading, isFetchingNextPage, fetchNextPage } = useBooksSearch(debouncedSearchQuery);
+
+  useFocusEffect(
+    useCallback(() => {
+      searchInputRef.current?.focus();
+    }, [searchInputRef])
+  );
 
   return (
     <Container>
@@ -21,7 +29,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => {
         style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: spacing.spacer }}
       >
         <Octicons name="search" size={sizing.iconMedium} color={colors.text} style={{ marginRight: spacing.spacer }} />
-        <Input value={searchQuery} onChangeText={setSearchQuery} style={{ flex: 1 }} />
+        <Input value={searchQuery} onChangeText={setSearchQuery} ref={searchInputRef} style={{ flex: 1 }} />
       </View>
       <View>
         <FlatList
