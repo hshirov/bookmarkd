@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleProp, TextInput, TextStyle } from 'react-native';
 import useTheme from 'hooks/useTheme';
+import Theme from 'enums/Theme.enum';
 
 interface InputProps {
   value: string;
@@ -11,7 +12,7 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = React.forwardRef<TextInput, InputProps>(({ value, style, onChangeText }, ref) => {
-  const { colors, spacing, sizing } = useTheme();
+  const { theme, colors, spacing, sizing } = useTheme();
 
   return (
     <TextInput
@@ -25,7 +26,7 @@ const Input: React.FC<InputProps> = React.forwardRef<TextInput, InputProps>(({ v
         },
         style,
       ]}
-      keyboardAppearance="dark"
+      keyboardAppearance={theme === Theme.Dark ? 'dark' : 'light'}
       value={value}
       ref={ref}
       onChangeText={onChangeText}
