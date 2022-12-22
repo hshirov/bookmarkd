@@ -13,39 +13,27 @@ export interface TextComponents {
 }
 
 const Text: React.FC<TextProps> & TextComponents = ({ children, style }) => {
-  const { colors, fonts } = useTheme();
+  const { colors } = useTheme();
 
-  return (
-    <RNText
-      style={[
-        {
-          color: colors.text,
-          fontFamily: fonts.family.openSans,
-        },
-        style,
-      ]}
-    >
-      {children}
-    </RNText>
-  );
+  return <RNText style={[{ color: colors.text }, style]}>{children}</RNText>;
 };
 
 Text.Heading = ({ children }) => {
   const { fonts, sizing } = useTheme();
 
-  return <Text style={{ fontSize: sizing.fontMedium, fontFamily: fonts.family.playfairDisplay }}>{children}</Text>;
+  return <Text style={{ fontFamily: fonts.family.playfairDisplay, fontSize: sizing.fontMedium }}>{children}</Text>;
 };
 
 Text.Title = ({ children }) => {
-  const { sizing } = useTheme();
+  const { fonts, sizing } = useTheme();
 
-  return <Text style={{ fontSize: sizing.fontMedium }}>{children}</Text>;
+  return <Text style={{ fontFamily: fonts.family.openSansBold, fontSize: sizing.fontSmall }}>{children}</Text>;
 };
 
 Text.Paragraph = ({ children }) => {
-  const { sizing } = useTheme();
+  const { fonts, sizing } = useTheme();
 
-  return <Text style={{ fontSize: sizing.fontXSmall }}>{children}</Text>;
+  return <Text style={{ fontFamily: fonts.family.openSans, fontSize: sizing.fontXSmall }}>{children}</Text>;
 };
 
 export default Text;

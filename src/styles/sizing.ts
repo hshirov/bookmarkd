@@ -7,6 +7,8 @@ const sizing = {
   fontSmall: 20,
   fontMedium: 26,
   fontLarge: 38,
+
+  bookListItemHeight: 140,
 };
 
 export default sizing;

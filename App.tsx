@@ -9,6 +9,8 @@ const App = () => {
   const [fontsLoaded] = useFonts({
     PlayfairDisplay: require('./assets/fonts/PlayfairDisplay.ttf'),
     OpenSans: require('./assets/fonts/OpenSans.ttf'),
+    OpenSansBold: require('./assets/fonts/OpenSans-Bold.ttf'),
+    OpenSansSemiBold: require('./assets/fonts/OpenSans-SemiBold.ttf'),
   });
 
   const queryClient = new QueryClient(queryClientConfig);

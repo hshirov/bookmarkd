@@ -8,7 +8,8 @@ import { GetBooksResponseItem } from 'interfaces/api/responses';
 import useBooksSearch from 'hooks/queries/useBooksSearch';
 import useDebounce from 'hooks/useDebounce';
 import useTheme from 'hooks/useTheme';
-import { Text, Container, Input } from 'components/Base';
+import { Container, Input } from 'components/Base';
+import { BookCard } from 'components/Book';
 
 const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => {
   const { colors, spacing, sizing } = useTheme();
@@ -26,7 +27,12 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => {
   return (
     <Container>
       <View
-        style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: spacing.spacer }}
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: spacing.spacer * 1.5,
+        }}
       >
         <Octicons name="search" size={sizing.iconMedium} color={colors.text} style={{ marginRight: spacing.spacer }} />
         <Input value={searchQuery} onChangeText={setSearchQuery} ref={searchInputRef} style={{ flex: 1 }} />
@@ -37,7 +43,13 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = () => {
           renderItem={({ item: page }) => (
             <View>
               {page.items?.map((item: GetBooksResponseItem) => (
-                <Text.Paragraph key={item.id}>{item.volumeInfo.title}</Text.Paragraph>
+                <BookCard
+                  key={item.id}
+                  title={item.volumeInfo.title}
+                  authors={item.volumeInfo.authors}
+                  imageUri={item.volumeInfo.imageLinks?.thumbnail}
+                  style={{ marginBottom: spacing.spacer }}
+                />
               ))}
             </View>
           )}
