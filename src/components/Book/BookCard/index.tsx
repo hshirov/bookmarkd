@@ -1,4 +1,5 @@
-import { Image, StyleProp, TextStyle, View } from 'react-native';
+import { memo } from 'react';
+import { Image, Pressable, StyleProp, TextStyle, View } from 'react-native';
 import useTheme from 'hooks/useTheme';
 import { Text } from 'components/Base';
 
@@ -7,22 +8,26 @@ interface BookCardProps {
   authors?: string[];
   imageUri?: string;
   style?: StyleProp<TextStyle>;
+  onPress?: () => void;
 }
 
-const BookCard: React.FC<BookCardProps> = ({ title, authors, imageUri, style }) => {
+const BookCard: React.FC<BookCardProps> = memo(({ title, authors, imageUri, style, onPress }) => {
   const { spacing, sizing } = useTheme();
 
   return (
-    <View style={[{ flexDirection: 'row' }, style]}>
-      <View style={{ flex: 1, height: sizing.bookListItemHeight, marginRight: spacing.spacer }}>
-        {imageUri && <Image style={{ height: sizing.bookListItemHeight }} source={{ uri: imageUri }} />}
+    <Pressable onPress={onPress}>
+      <View style={[{ flexDirection: 'row' }, style]}>
+        <View style={{ flex: 1, height: sizing.bookListItemHeight, marginRight: spacing.spacer }}>
+          {imageUri && <Image style={{ height: sizing.bookListItemHeight }} source={{ uri: imageUri }} />}
+        </View>
+
+        <View style={{ flex: 3 }}>
+          <Text.Title>{title}</Text.Title>
+          {authors && authors.map((author) => <Text.Secondary key={author}>{author}</Text.Secondary>)}
+        </View>
       </View>
-      <View style={{ flex: 3 }}>
-        <Text.Title>{title}</Text.Title>
-        {authors && authors.map((author) => <Text.Paragraph key={author}>{author}</Text.Paragraph>)}
-      </View>
-    </View>
+    </Pressable>
   );
-};
+});
 
 export default BookCard;

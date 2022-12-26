@@ -9,6 +9,8 @@ const sizing = {
   fontLarge: 38,
 
   bookListItemHeight: 140,
+  bookDetailsImageWidth: 120,
+  bookDetailsImageHeight: 200,
 };
 
 export default sizing;

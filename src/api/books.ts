@@ -1,10 +1,11 @@
 import BookCategory from 'src/enums/BookCategory.enum';
 import axiosInstance from './axios';
 
-const fields = 'items/id,items/volumeInfo(title,authors,description,pageCount,categories,imageLinks)';
+const booksFields = 'items/id,items/volumeInfo(title,authors,description,pageCount,categories,imageLinks)';
+const bookFields = 'id,volumeInfo(title,authors,description,pageCount,categories,imageLinks)';
 const printType = 'books';
 
-export const getBook = (id: string) => axiosInstance.get(`volumes/${id}`, { params: { fields } });
+export const getBook = (id: string) => axiosInstance.get(`volumes/${id}`, { params: { fields: bookFields } });
 
 export const getBooks = (searchQuery: string, startIndex?: number, maxResults?: number) =>
   axiosInstance.get('volumes', {
@@ -12,7 +13,7 @@ export const getBooks = (searchQuery: string, startIndex?: number, maxResults?: 
       q: searchQuery,
       startIndex,
       maxResults,
-      fields,
+      fields: booksFields,
       printType,
     },
   });
@@ -23,7 +24,7 @@ export const getBooksByCategory = (category: BookCategory, startIndex?: number, 
       q: `+subject:${category}`,
       startIndex,
       maxResults,
-      fields,
+      fields: booksFields,
       printType,
     },
   });

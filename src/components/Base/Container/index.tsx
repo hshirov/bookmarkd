@@ -13,7 +13,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
       style={{
         flex: 1,
         backgroundColor: colors.background,
-        padding: spacing.innerPadding,
+        paddingHorizontal: spacing.innerPadding,
       }}
     >
       {children}

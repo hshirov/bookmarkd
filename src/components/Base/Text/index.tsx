@@ -10,6 +10,7 @@ export interface TextComponents {
   Heading: React.FC<TextProps>;
   Title: React.FC<TextProps>;
   Paragraph: React.FC<TextProps>;
+  Secondary: React.FC<TextProps>;
 }
 
 const Text: React.FC<TextProps> & TextComponents = ({ children, style }) => {
@@ -18,22 +19,77 @@ const Text: React.FC<TextProps> & TextComponents = ({ children, style }) => {
   return <RNText style={[{ color: colors.text }, style]}>{children}</RNText>;
 };
 
-Text.Heading = ({ children }) => {
+Text.Heading = ({ children, style }) => {
   const { fonts, sizing } = useTheme();
 
-  return <Text style={{ fontFamily: fonts.family.playfairDisplay, fontSize: sizing.fontMedium }}>{children}</Text>;
+  return (
+    <Text
+      style={[
+        {
+          fontFamily: fonts.family.playfairDisplay,
+          fontSize: sizing.fontMedium,
+        },
+        style,
+      ]}
+    >
+      {children}
+    </Text>
+  );
 };
 
-Text.Title = ({ children }) => {
+Text.Title = ({ children, style }) => {
   const { fonts, sizing } = useTheme();
 
-  return <Text style={{ fontFamily: fonts.family.openSansBold, fontSize: sizing.fontSmall }}>{children}</Text>;
+  return (
+    <Text
+      style={[
+        {
+          fontFamily: fonts.family.openSansBold,
+          fontSize: sizing.fontSmall,
+        },
+        style,
+      ]}
+    >
+      {children}
+    </Text>
+  );
 };
 
-Text.Paragraph = ({ children }) => {
+Text.Paragraph = ({ children, style }) => {
   const { fonts, sizing } = useTheme();
 
-  return <Text style={{ fontFamily: fonts.family.openSans, fontSize: sizing.fontXSmall }}>{children}</Text>;
+  return (
+    <Text
+      style={[
+        {
+          fontFamily: fonts.family.openSans,
+          fontSize: sizing.fontXSmall,
+        },
+        style,
+      ]}
+    >
+      {children}
+    </Text>
+  );
+};
+
+Text.Secondary = ({ children, style }) => {
+  const { fonts, sizing, colors } = useTheme();
+
+  return (
+    <Text
+      style={[
+        {
+          fontFamily: fonts.family.openSans,
+          fontSize: sizing.fontXSmall,
+          color: colors.textInactive,
+        },
+        style,
+      ]}
+    >
+      {children}
+    </Text>
+  );
 };
 
 export default Text;

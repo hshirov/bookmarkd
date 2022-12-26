@@ -6,7 +6,7 @@ import { getBooks } from 'api/books';
 
 const useBooksSearch = (searchQuery: string, itemsPerPage = 30) => {
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
-  const getSearchedBooks = useCallback(
+  const fetchBooks = useCallback(
     ({ pageParam = 0 }) => {
       if (!isNonEmptyStr(searchQuery)) {
         return Promise.resolve({ items: [] });
@@ -22,7 +22,7 @@ const useBooksSearch = (searchQuery: string, itemsPerPage = 30) => {
     [searchQuery, setHasReachedEnd]
   );
 
-  return useInfiniteQuery(['books', searchQuery], getSearchedBooks, {
+  return useInfiniteQuery(['books', searchQuery], fetchBooks, {
     getNextPageParam: (_, allPages) => (hasReachedEnd ? undefined : allPages.length + 1),
     cacheTime: 0,
     staleTime: 0,
