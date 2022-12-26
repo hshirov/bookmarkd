@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import TabRoute from 'enums/TabRoute.enum';
 import useTheme from 'hooks/useTheme';
-import TabIcon from '../TabIcon';
+import TabIcon from './TabIcon';
 
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;

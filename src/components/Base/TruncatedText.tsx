@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleProp, TextStyle } from 'react-native';
 import useTheme from 'hooks/useTheme';
-import Text from '../Text';
+import Text from './Text';
 
 interface TruncatedTextProps {
   text: string;
