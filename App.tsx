@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
+import { Provider as StoreProvider } from 'react-redux';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { queryClientConfig } from './src/utils/config/reactQueryConfig';
 import Routes from './src/navigation/Routes';
+import { store } from './src/store';
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -20,10 +22,12 @@ const App = () => {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <StatusBar style="light" />
-      <Routes />
-    </QueryClientProvider>
+    <StoreProvider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <StatusBar style="light" />
+        <Routes />
+      </QueryClientProvider>
+    </StoreProvider>
   );
 };
 
