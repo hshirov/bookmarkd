@@ -1,11 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import commonReducer from './slices/commonSlice';
 
-const rootReducer = combineReducers({ commonReducer });
-
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    common: commonReducer,
+  },
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

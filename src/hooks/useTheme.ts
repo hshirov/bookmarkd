@@ -6,7 +6,7 @@ import Theme from 'enums/Theme.enum';
 import { useAppSelector } from './store';
 
 const useTheme = () => {
-  const { theme } = useAppSelector((state) => state.commonReducer);
+  const { theme } = useAppSelector((state) => state.common);
 
   const colors = theme === Theme.Dark ? darkThemeColors : lightThemeColors;
 
