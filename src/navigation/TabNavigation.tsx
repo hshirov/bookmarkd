@@ -12,6 +12,7 @@ import { Header, TabBar } from 'components/Navigation';
 import { withBookDetailsScreen } from 'components/HOC';
 import Home from 'screens/Home';
 import Explore from 'screens/Explore';
+import Profile from 'screens/Profile';
 
 const Tabs = createBottomTabNavigator<TabParamList>();
 
@@ -39,6 +40,7 @@ const TabNavigation: React.FC = () => (
   >
     <Tabs.Screen name={TabRoute.Home} options={{ title: 'Home' }} component={Home} />
     <Tabs.Screen name={TabRoute.Explore} options={{ title: 'Explore' }} component={ExploreWithBookDetails} />
+    <Tabs.Screen name={TabRoute.Profile} options={{ title: 'Profile' }} component={Profile} />
   </Tabs.Navigator>
 );
 

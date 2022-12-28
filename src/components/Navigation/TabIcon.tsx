@@ -16,8 +16,12 @@ const TabIcon: React.FC<TabIconProps> = ({ color, routeName, styles }) => {
     switch (routeName) {
       case TabRoute.Home:
         return 'home';
-      default:
+      case TabRoute.Explore:
         return 'search';
+      case TabRoute.Profile:
+        return 'person';
+      default:
+        return undefined;
     }
   }, [routeName]);
 
