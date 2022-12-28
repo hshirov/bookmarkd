@@ -4,7 +4,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { StatusBarManager } from './src/components/Managers';
 import { queryClientConfig } from './src/utils/config/reactQueryConfig';
-import Routes from './src/navigation/Routes';
+import TabNavigation from './src/navigation/TabNavigation';
 import { store } from './src/store';
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
     <StoreProvider store={store}>
       <QueryClientProvider client={queryClient}>
         <StatusBarManager />
-        <Routes />
+        <TabNavigation />
       </QueryClientProvider>
     </StoreProvider>
   );
