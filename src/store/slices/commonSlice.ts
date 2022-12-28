@@ -6,7 +6,7 @@ interface CommonState {
 }
 
 const initialState: CommonState = {
-  theme: Theme.Dark,
+  theme: Theme.Light,
 };
 
 const commonSlice = createSlice({

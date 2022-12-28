@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { GetBooksResponse } from 'interfaces/api/responses';
+import { GetBooksResponse } from 'src/interfaces/api/responses.interface';
 import { isNonEmptyArr, isNonEmptyStr } from 'utils/index';
 import { getBooks } from 'api/books';
 

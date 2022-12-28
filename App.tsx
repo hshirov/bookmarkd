@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { Provider as StoreProvider } from 'react-redux';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { StatusBarManager } from './src/components/Managers';
 import { queryClientConfig } from './src/utils/config/reactQueryConfig';
 import Routes from './src/navigation/Routes';
 import { store } from './src/store';
@@ -24,7 +24,7 @@ const App = () => {
   return (
     <StoreProvider store={store}>
       <QueryClientProvider client={queryClient}>
-        <StatusBar style="light" />
+        <StatusBarManager />
         <Routes />
       </QueryClientProvider>
     </StoreProvider>

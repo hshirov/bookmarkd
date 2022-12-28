@@ -4,7 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
 import TabRoute from 'enums/TabRoute.enum';
 import TabNavProps from 'types/navigation/TabNavProps.type';
-import { GetBookResponse } from 'interfaces/api/responses';
+import { GetBookResponse } from 'src/interfaces/api/responses.interface';
 import useBooksSearch from 'hooks/queries/useBooksSearch';
 import useDebounce from 'hooks/useDebounce';
 import useTheme from 'hooks/useTheme';
