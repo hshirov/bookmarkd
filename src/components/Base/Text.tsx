@@ -26,7 +26,7 @@ Text.Heading = ({ children, style }) => {
     <Text
       style={[
         {
-          fontFamily: fonts.family.playfairDisplay,
+          fontFamily: fonts.playfairDisplay,
           fontSize: sizing.fontMedium,
         },
         style,
@@ -44,7 +44,7 @@ Text.Title = ({ children, style }) => {
     <Text
       style={[
         {
-          fontFamily: fonts.family.openSansBold,
+          fontFamily: fonts.openSansBold,
           fontSize: sizing.fontSmall,
         },
         style,
@@ -62,7 +62,7 @@ Text.Paragraph = ({ children, style }) => {
     <Text
       style={[
         {
-          fontFamily: fonts.family.openSans,
+          fontFamily: fonts.openSans,
           fontSize: sizing.fontXSmall,
         },
         style,
@@ -80,7 +80,7 @@ Text.Secondary = ({ children, style }) => {
     <Text
       style={[
         {
-          fontFamily: fonts.family.openSans,
+          fontFamily: fonts.openSans,
           fontSize: sizing.fontXSmall,
           color: colors.textInactive,
         },

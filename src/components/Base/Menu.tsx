@@ -23,9 +23,7 @@ const Menu: React.FC<MenuProps> & MenuComponents = ({ children }) => <View>{chil
 Menu.Title = ({ children }) => {
   const { spacing, fonts } = useTheme();
 
-  return (
-    <Text.Title style={{ fontFamily: fonts.family.openSans, marginBottom: spacing.spacer }}>{children}</Text.Title>
-  );
+  return <Text.Title style={{ fontFamily: fonts.openSans, marginBottom: spacing.spacer }}>{children}</Text.Title>;
 };
 
 Menu.Divider = () => {
@@ -49,7 +47,7 @@ Menu.Item = ({ text, icon, onPress }) => {
     <Pressable onPress={onPress} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}>
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: spacing.spacer * 1.5 }}>
         <View style={{ marginRight: spacing.spacer / 2 }}>{icon}</View>
-        <Text.Title style={{ fontFamily: fonts.family.openSansSemiBold }}>{text}</Text.Title>
+        <Text.Title style={{ fontFamily: fonts.openSansSemiBold }}>{text}</Text.Title>
       </View>
     </Pressable>
   );

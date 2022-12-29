@@ -19,7 +19,7 @@ const TruncatedText: React.FC<TruncatedTextProps> = ({ text, maxLength = 200, te
       {text.length > maxLength && shouldTruncate ? (
         <Text style={textStyle}>
           {`${text.substring(0, maxLength)}... `}
-          <Text style={{ fontFamily: fonts.family.openSansBold }}>See more</Text>
+          <Text style={{ fontFamily: fonts.openSansBold }}>See more</Text>
         </Text>
       ) : (
         <Text style={textStyle}>{text}</Text>
