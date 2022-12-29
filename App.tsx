@@ -2,10 +2,11 @@ import * as React from 'react';
 import { useFonts } from 'expo-font';
 import { Provider as StoreProvider } from 'react-redux';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { PersistGate } from 'redux-persist/integration/react';
 import { StatusBarManager } from './src/components/Managers';
 import { queryClientConfig } from './src/utils/config/reactQueryConfig';
 import TabNavigation from './src/navigation/TabNavigation';
-import { store } from './src/store';
+import { store, persistor } from './src/store';
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -23,10 +24,12 @@ const App = () => {
 
   return (
     <StoreProvider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <StatusBarManager />
-        <TabNavigation />
-      </QueryClientProvider>
+      <PersistGate persistor={persistor} loading={null}>
+        <QueryClientProvider client={queryClient}>
+          <StatusBarManager />
+          <TabNavigation />
+        </QueryClientProvider>
+      </PersistGate>
     </StoreProvider>
   );
 };
