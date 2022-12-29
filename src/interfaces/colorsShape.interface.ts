@@ -4,4 +4,5 @@ export default interface ColorsShape {
   background: string;
   text: string;
   textInactive: string;
+  darkModeSwitchThumbColor: string;
 }

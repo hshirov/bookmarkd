@@ -19,7 +19,10 @@ const Header: React.FC<HeaderProps> = ({ route, navigation, options }) => {
   const { colors, spacing, sizing } = useTheme();
   const insets = useSafeAreaInsets();
   const title = getHeaderTitle(options, route.name);
-  const isDetailsScreen = useMemo(() => getFocusedRouteNameFromRoute(route) === TabRoute.BookDetails, [route]);
+  const shouldShowBackButton = useMemo(() => {
+    const routeName = getFocusedRouteNameFromRoute(route);
+    return routeName === TabRoute.BookDetails || routeName === TabRoute.Settings;
+  }, [route]);
 
   return (
     <View
@@ -30,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ route, navigation, options }) => {
         paddingBottom: spacing.spacer,
       }}
     >
-      {isDetailsScreen ? (
+      {shouldShowBackButton ? (
         <Pressable onPress={() => navigation.dispatch(StackActions.pop())}>
           <Octicons name="chevron-left" size={sizing.iconLarge} color={colors.text} />
         </Pressable>

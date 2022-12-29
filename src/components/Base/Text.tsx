@@ -6,7 +6,7 @@ interface TextProps {
   style?: StyleProp<TextStyle>;
 }
 
-export interface TextComponents {
+interface TextComponents {
   Heading: React.FC<TextProps>;
   Title: React.FC<TextProps>;
   Paragraph: React.FC<TextProps>;

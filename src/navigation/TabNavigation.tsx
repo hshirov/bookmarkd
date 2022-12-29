@@ -16,8 +16,8 @@ import TabRoute from 'enums/TabRoute.enum';
 import TabParamList from 'types/navigation/TabParamList.type';
 import { Header, TabBar } from 'components/Navigation';
 import Home from 'screens/Home';
-import Profile from 'screens/Profile';
 import ExploreStack from './ExploreStack';
+import ProfileStack from './ProfileStack';
 
 const Tabs = createBottomTabNavigator<TabParamList>();
 
@@ -44,7 +44,7 @@ const TabNavigation: React.FC = () => (
     >
       <Tabs.Screen name={TabRoute.Home} options={{ title: 'Home' }} component={Home} />
       <Tabs.Screen name={TabRoute.Explore} options={{ title: 'Explore' }} component={ExploreStack} />
-      <Tabs.Screen name={TabRoute.Profile} options={{ title: 'Profile' }} component={Profile} />
+      <Tabs.Screen name={TabRoute.Profile} options={{ title: 'Profile' }} component={ProfileStack} />
     </Tabs.Navigator>
   </NavigationContainer>
 );

@@ -6,6 +6,7 @@ export const lightThemeColors: ColorsShape = {
   background: '#ffffff',
   text: '#000000',
   textInactive: '#6f6f6f',
+  darkModeSwitchThumbColor: '#282828',
 };
 
 export const darkThemeColors: ColorsShape = {
@@ -14,4 +15,5 @@ export const darkThemeColors: ColorsShape = {
   background: '#000000',
   text: '#ffffff',
   textInactive: '#a1a1a1',
+  darkModeSwitchThumbColor: '#282828',
 };
