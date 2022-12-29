@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
     "strict": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "src/*": ["./src/*"],
-      "api/*": ["./src/api/*"],
-      "components/*": ["./src/components/*"],
-      "enums/*": ["./src/enums/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "interfaces/*": ["./src/interfaces/*"],
-      "screens/*": ["./src/screens/*"],
-      "store/*": ["./src/store/*"],
-      "styles/*": ["./src/styles/*"],
-      "types/*": ["./src/types/*"],
-      "utils/*": ["./src/utils/*"]
+      "src/*": ["./*"],
+      "api/*": ["./api/*"],
+      "components/*": ["./components/*"],
+      "enums/*": ["./enums/*"],
+      "hooks/*": ["./hooks/*"],
+      "interfaces/*": ["./interfaces/*"],
+      "screens/*": ["./screens/*"],
+      "store/*": ["./store/*"],
+      "styles/*": ["./styles/*"],
+      "types/*": ["./types/*"],
+      "utils/*": ["./utils/*"]
     }
   },
   "typeRoots": ["./src/typings", "./node_modules/@types"],
