@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { Image, Pressable, StyleProp, TextStyle, View } from 'react-native';
-import useTheme from 'hooks/useTheme';
 import { Text } from 'components/Base';
+import useTheme from 'hooks/useTheme';
+import { isEqual } from 'utils/index';
 
 interface BookCardProps {
   title: string;
@@ -10,6 +11,12 @@ interface BookCardProps {
   style?: StyleProp<TextStyle>;
   onPress?: () => void;
 }
+
+const arePropsEqual = (prev: BookCardProps, next: BookCardProps) =>
+  prev.title === next.title &&
+  isEqual(prev.authors, next.authors) &&
+  prev.imageUri === next.imageUri &&
+  isEqual(prev.style, next.style);
 
 const BookCard: React.FC<BookCardProps> = memo(({ title, authors, imageUri, style, onPress }) => {
   const { spacing, sizing } = useTheme();
@@ -28,6 +35,6 @@ const BookCard: React.FC<BookCardProps> = memo(({ title, authors, imageUri, styl
       </View>
     </Pressable>
   );
-});
+}, arePropsEqual);
 
 export default BookCard;
