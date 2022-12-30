@@ -1,15 +1,19 @@
 import { ActivityIndicator, Image, ScrollView } from 'react-native';
 import { Text, Container, Centered, TruncatedText } from 'components/Base';
-import { AddToListButton } from 'components/Book';
+import { SaveBookButton } from 'components/Book';
 import TabRoute from 'enums/TabRoute.enum';
 import TabNavProps from 'types/navigation/TabNavProps.type';
+import BookStatus from 'enums/BookStatus.enum';
 import { removeHtmlTags } from 'utils/text';
 import { isNonEmptyArr, isNonEmptyStr } from 'utils/index';
 import useBookDetails from 'hooks/queries/useBookDetails';
+import { useAppDispatch } from 'hooks/store';
 import useTheme from 'hooks/useTheme';
+import { removeBook, saveBook } from 'store/slices/booksSlice';
 
 const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => {
   const { spacing, sizing } = useTheme();
+  const dispatch = useAppDispatch();
   const { id } = route.params;
   const { data, isLoading } = useBookDetails(id);
 
@@ -19,6 +23,18 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
   const description = isNonEmptyStr(data?.volumeInfo.description)
     ? removeHtmlTags(data?.volumeInfo.description as string)
     : '';
+
+  const onSaveBook = (status: BookStatus) => {
+    const book = {
+      title: title as string,
+      authors: authors as string,
+      thumbnailUri: thumbnailUri as string,
+      status,
+    };
+
+    dispatch(saveBook({ id, book }));
+  };
+  const onRemoveBook = () => dispatch(removeBook(id));
 
   return (
     <Container>
@@ -44,7 +60,12 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
             <Text.Heading style={{ textAlign: 'center' }}>{title}</Text.Heading>
             <Text.Secondary style={{ textAlign: 'center' }}>{authors}</Text.Secondary>
 
-            <AddToListButton style={{ marginVertical: spacing.spacer * 2 }} />
+            <SaveBookButton
+              style={{ marginVertical: spacing.spacer * 2 }}
+              bookId={id}
+              saveBook={onSaveBook}
+              removeBook={onRemoveBook}
+            />
 
             {isNonEmptyStr(description) && (
               <TruncatedText
