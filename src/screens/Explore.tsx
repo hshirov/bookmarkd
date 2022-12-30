@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import { ActivityIndicator, FlatList, View, TextInput } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
@@ -10,13 +10,14 @@ import useDebounce from 'hooks/useDebounce';
 import useTheme from 'hooks/useTheme';
 import { Container, Input, Text } from 'components/Base';
 import { BookCard } from 'components/Book';
+import { ErrorScreen } from 'components/Common';
 
 const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
   const { colors, spacing, sizing } = useTheme();
   const searchInputRef = useRef<TextInput>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedSearchQuery = useDebounce(searchQuery);
-  const { data, isLoading, isFetchingNextPage, fetchNextPage } = useBooksSearch(debouncedSearchQuery.trim());
+  const { data, isLoading, isFetchingNextPage, isError, fetchNextPage } = useBooksSearch(debouncedSearchQuery.trim());
 
   const hasPages = data?.pages[0].items.length !== 0;
 
@@ -26,21 +27,9 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
     }, [searchInputRef])
   );
 
-  return (
-    <Container>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginBottom: spacing.spacer * 1.5,
-        }}
-      >
-        <Octicons name="search" size={sizing.iconMedium} color={colors.text} style={{ marginRight: spacing.spacer }} />
-        <Input value={searchQuery} onChangeText={setSearchQuery} ref={searchInputRef} style={{ flex: 1 }} />
-      </View>
-
-      {hasPages ? (
+  const content = useMemo(
+    () =>
+      hasPages ? (
         <FlatList
           data={data?.pages}
           renderItem={({ item: page }) => (
@@ -66,7 +55,25 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
         <View style={{ alignItems: 'center' }}>
           <Text.Secondary>Search by book title or author.</Text.Secondary>
         </View>
-      )}
+      ),
+    [hasPages, data, isLoading, isFetchingNextPage, spacing]
+  );
+
+  return (
+    <Container>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: spacing.spacer * 1.5,
+        }}
+      >
+        <Octicons name="search" size={sizing.iconMedium} color={colors.text} style={{ marginRight: spacing.spacer }} />
+        <Input value={searchQuery} onChangeText={setSearchQuery} ref={searchInputRef} style={{ flex: 1 }} />
+      </View>
+
+      {isError ? <ErrorScreen /> : content}
     </Container>
   );
 };

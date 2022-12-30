@@ -1,6 +1,4 @@
 import { ActivityIndicator, Image, ScrollView, View } from 'react-native';
-import { Text, Container, Centered, TruncatedText } from 'components/Base';
-import { SaveBookButton } from 'components/Book';
 import TabRoute from 'enums/TabRoute.enum';
 import TabNavProps from 'types/navigation/TabNavProps.type';
 import BookStatus from 'enums/BookStatus.enum';
@@ -10,12 +8,15 @@ import useBookDetails from 'hooks/queries/useBookDetails';
 import { useAppDispatch } from 'hooks/store';
 import useTheme from 'hooks/useTheme';
 import { removeBook, saveBook } from 'store/slices/booksSlice';
+import { Text, Container, Centered, TruncatedText } from 'components/Base';
+import { SaveBookButton } from 'components/Book';
+import { ErrorScreen } from 'components/Common';
 
 const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => {
   const { spacing, sizing, styles } = useTheme();
   const dispatch = useAppDispatch();
   const { id } = route.params;
-  const { data, isLoading } = useBookDetails(id);
+  const { data, isLoading, isError } = useBookDetails(id);
 
   const thumbnailUri = data?.volumeInfo.imageLinks?.thumbnail;
   const title = data?.volumeInfo.title;
@@ -35,6 +36,14 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
     dispatch(saveBook({ id, book }));
   };
   const onRemoveBook = () => dispatch(removeBook(id));
+
+  if (isError) {
+    return (
+      <Container>
+        <ErrorScreen />
+      </Container>
+    );
+  }
 
   return (
     <Container>
