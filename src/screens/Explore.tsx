@@ -8,7 +8,7 @@ import { GetBookResponse } from 'src/interfaces/api/responses.interface';
 import useBooksSearch from 'hooks/queries/useBooksSearch';
 import useDebounce from 'hooks/useDebounce';
 import useTheme from 'hooks/useTheme';
-import { Container, Input } from 'components/Base';
+import { Container, Input, Text } from 'components/Base';
 import { BookCard } from 'components/Book';
 
 const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
@@ -17,6 +17,8 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedSearchQuery = useDebounce(searchQuery);
   const { data, isLoading, isFetchingNextPage, fetchNextPage } = useBooksSearch(debouncedSearchQuery.trim());
+
+  const hasPages = data?.pages[0].items.length !== 0;
 
   useFocusEffect(
     useCallback(() => {
@@ -38,7 +40,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
         <Input value={searchQuery} onChangeText={setSearchQuery} ref={searchInputRef} style={{ flex: 1 }} />
       </View>
 
-      <View>
+      {hasPages ? (
         <FlatList
           data={data?.pages}
           renderItem={({ item: page }) => (
@@ -60,7 +62,11 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
           onEndReachedThreshold={0.5}
           onEndReached={() => fetchNextPage()}
         />
-      </View>
+      ) : (
+        <View style={{ alignItems: 'center' }}>
+          <Text.Secondary>Search by book title or author.</Text.Secondary>
+        </View>
+      )}
     </Container>
   );
 };
