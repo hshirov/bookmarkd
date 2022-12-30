@@ -1,4 +1,4 @@
-import { ActivityIndicator, Image, ScrollView } from 'react-native';
+import { ActivityIndicator, Image, ScrollView, View } from 'react-native';
 import { Text, Container, Centered, TruncatedText } from 'components/Base';
 import { SaveBookButton } from 'components/Book';
 import TabRoute from 'enums/TabRoute.enum';
@@ -12,7 +12,7 @@ import useTheme from 'hooks/useTheme';
 import { removeBook, saveBook } from 'store/slices/booksSlice';
 
 const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => {
-  const { spacing, sizing } = useTheme();
+  const { spacing, sizing, styles } = useTheme();
   const dispatch = useAppDispatch();
   const { id } = route.params;
   const { data, isLoading } = useBookDetails(id);
@@ -46,15 +46,17 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
         <ScrollView contentContainerStyle={{ paddingBottom: spacing.spacer }}>
           <Centered horizontallyOnly>
             {isNonEmptyStr(thumbnailUri) && (
-              <Image
-                style={{
-                  width: sizing.bookDetailsImageWidth,
-                  height: sizing.bookDetailsImageHeight,
-                  marginBottom: spacing.spacer,
-                }}
-                source={{ uri: thumbnailUri }}
-                resizeMode="contain"
-              />
+              <View style={styles.shadow}>
+                <Image
+                  style={{
+                    width: sizing.bookDetailsImageWidth,
+                    height: sizing.bookDetailsImageHeight,
+                    marginBottom: spacing.spacer,
+                  }}
+                  source={{ uri: thumbnailUri }}
+                  resizeMode="contain"
+                />
+              </View>
             )}
 
             <Text.Heading style={{ textAlign: 'center' }}>{title}</Text.Heading>

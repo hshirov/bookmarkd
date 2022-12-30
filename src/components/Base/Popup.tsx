@@ -9,7 +9,7 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ children, isActive, onTapOutside }) => {
-  const { colors, sizing, spacing } = useTheme();
+  const { colors, sizing, spacing, styles } = useTheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -19,13 +19,16 @@ const Popup: React.FC<PopupProps> = ({ children, isActive, onTapOutside }) => {
           <View />
         </Pressable>
         <View
-          style={{
-            backgroundColor: colors.popupBackgroundColor,
-            minHeight: sizing.popupMinHeight,
-            paddingHorizontal: spacing.spacer,
-            paddingTop: spacing.spacer,
-            paddingBottom: insets.bottom,
-          }}
+          style={[
+            {
+              backgroundColor: colors.popupBackgroundColor,
+              minHeight: sizing.popupMinHeight,
+              paddingHorizontal: spacing.spacer,
+              paddingTop: spacing.spacer,
+              paddingBottom: insets.bottom,
+            },
+            styles.shadow,
+          ]}
         >
           {children}
         </View>

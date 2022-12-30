@@ -41,10 +41,10 @@ Menu.Divider = () => {
 };
 
 Menu.Item = ({ text, icon, onPress }) => {
-  const { spacing, fonts } = useTheme();
+  const { spacing, fonts, styles } = useTheme();
 
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}>
+    <Pressable onPress={onPress} style={styles.pressedOpacity}>
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: spacing.spacer * 1.5 }}>
         <View style={{ marginRight: spacing.spacer / 2 }}>{icon}</View>
         <Text.Title style={{ fontFamily: fonts.openSansSemiBold }}>{text}</Text.Title>

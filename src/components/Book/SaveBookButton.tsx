@@ -14,7 +14,7 @@ interface SaveBookButtonProps {
 }
 
 const SaveBookButton: React.FC<SaveBookButtonProps> = ({ bookId, saveBook, removeBook, style }) => {
-  const { colors, sizing, fonts } = useTheme();
+  const { colors, sizing, fonts, styles } = useTheme();
   const [isPopupActive, setIsPopupActive] = useState(false);
   const savedBook = useAppSelector((state) => state.books.saved[bookId]);
 
@@ -68,10 +68,7 @@ const SaveBookButton: React.FC<SaveBookButtonProps> = ({ bookId, saveBook, remov
           </Pressable>
         ) : (
           <View style={{ flexDirection: 'row' }}>
-            <Pressable
-              style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
-              onPress={() => onSelectItem(BookStatus.WantToRead)}
-            >
+            <Pressable style={styles.pressedOpacity} onPress={() => onSelectItem(BookStatus.WantToRead)}>
               <View
                 style={{
                   width: sizing.addToListButtonWidth,
@@ -86,7 +83,7 @@ const SaveBookButton: React.FC<SaveBookButtonProps> = ({ bookId, saveBook, remov
               </View>
             </Pressable>
 
-            <Pressable style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })} onPress={openPopup}>
+            <Pressable style={styles.pressedOpacity} onPress={openPopup}>
               <View
                 style={{
                   width: sizing.addToListButtonHeight,
