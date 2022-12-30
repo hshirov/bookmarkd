@@ -44,6 +44,8 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
             <Text.Heading style={{ textAlign: 'center' }}>{title}</Text.Heading>
             <Text.Secondary style={{ textAlign: 'center' }}>{authors}</Text.Secondary>
 
+            <AddToListButton style={{ marginVertical: spacing.spacer * 2 }} />
+
             {isNonEmptyStr(description) && (
               <TruncatedText
                 containerStyle={{
@@ -53,8 +55,6 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
                 text={description}
               />
             )}
-
-            <AddToListButton style={{ marginTop: spacing.spacer * 2 }} />
           </Centered>
         </ScrollView>
       )}
