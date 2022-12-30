@@ -10,7 +10,7 @@ interface TruncatedTextProps {
   containerStyle?: StyleProp<TextStyle>;
 }
 
-const TruncatedText: React.FC<TruncatedTextProps> = ({ text, maxLength = 200, textStyle, containerStyle }) => {
+const TruncatedText: React.FC<TruncatedTextProps> = ({ text, maxLength = 320, textStyle, containerStyle }) => {
   const { fonts } = useTheme();
   const [shouldTruncate, setShouldTruncate] = useState(true);
 

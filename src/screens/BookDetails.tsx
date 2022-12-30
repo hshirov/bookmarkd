@@ -1,5 +1,6 @@
 import { ActivityIndicator, Image, ScrollView } from 'react-native';
 import { Text, Container, Centered, TruncatedText } from 'components/Base';
+import { AddToListButton } from 'components/Book';
 import TabRoute from 'enums/TabRoute.enum';
 import TabNavProps from 'types/navigation/TabNavProps.type';
 import { removeHtmlTags } from 'utils/text';
@@ -39,12 +40,21 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
                 resizeMode="contain"
               />
             )}
+
             <Text.Heading style={{ textAlign: 'center' }}>{title}</Text.Heading>
             <Text.Secondary style={{ textAlign: 'center' }}>{authors}</Text.Secondary>
-            <TruncatedText
-              containerStyle={{ marginTop: spacing.spacer, paddingHorizontal: spacing.spacer }}
-              text={description}
-            />
+
+            {isNonEmptyStr(description) && (
+              <TruncatedText
+                containerStyle={{
+                  marginTop: spacing.spacer,
+                  paddingHorizontal: spacing.spacer,
+                }}
+                text={description}
+              />
+            )}
+
+            <AddToListButton style={{ marginTop: spacing.spacer * 2 }} />
           </Centered>
         </ScrollView>
       )}

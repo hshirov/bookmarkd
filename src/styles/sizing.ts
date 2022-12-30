@@ -11,6 +11,11 @@ const sizing = {
   bookListItemHeight: 140,
   bookDetailsImageWidth: 120,
   bookDetailsImageHeight: 200,
+
+  addToListButtonWidth: 120,
+  addToListButtonHeight: 50,
+
+  popupMinHeight: 200,
 };
 
 export default sizing;

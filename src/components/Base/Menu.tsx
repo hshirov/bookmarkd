@@ -8,7 +8,7 @@ interface MenuProps {
 
 interface ItemProps {
   text: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   onPress: () => void;
 }
 

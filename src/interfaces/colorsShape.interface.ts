@@ -4,5 +4,8 @@ export default interface ColorsShape {
   background: string;
   text: string;
   textInactive: string;
+  textInverse: string;
   darkModeSwitchThumbColor: string;
+  addToListButtonBackgroundColor: string;
+  popupBackgroundColor: string;
 }
