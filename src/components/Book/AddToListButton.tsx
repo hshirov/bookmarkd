@@ -10,9 +10,9 @@ interface AddToListButtonProps {
 
 const AddToListButton: React.FC<AddToListButtonProps> = ({ style }) => {
   const { colors, sizing } = useTheme();
-  const [isPopupActive, setIsPopup] = useState(false);
+  const [isPopupActive, setIsPopupActive] = useState(false);
 
-  const closeModal = () => setIsPopup(false);
+  const closeModal = () => setIsPopupActive(false);
 
   const CircleIcon = useMemo(
     () => <Octicons name="circle" size={sizing.iconLarge} color={colors.text} />,
@@ -35,7 +35,7 @@ const AddToListButton: React.FC<AddToListButtonProps> = ({ style }) => {
           <Text.Paragraph style={{ color: colors.textInverse }}>Want to read</Text.Paragraph>
         </View>
 
-        <Pressable style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })} onPress={() => setIsPopup(true)}>
+        <Pressable style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })} onPress={() => setIsPopupActive(true)}>
           <View
             style={{
               width: sizing.addToListButtonHeight,
