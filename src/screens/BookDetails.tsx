@@ -30,6 +30,7 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
       id,
       thumbnailUri,
       status,
+      updatedOnTimestamp: Date.now(),
     };
 
     dispatch(saveBook(book));

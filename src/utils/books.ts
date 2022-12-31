@@ -6,7 +6,8 @@ import BookCategory from 'enums/BookCategory.enum';
 export const getSavedBooksByStatus = (savedBooks: Dictionary<SavedBook>, status: BookStatus) =>
   Object.keys(savedBooks)
     .filter((id) => savedBooks[id].status === status)
-    .map((id) => savedBooks[id]);
+    .map((id) => savedBooks[id])
+    .sort((a, b) => a.updatedOnTimestamp - b.updatedOnTimestamp);
 
 export const getCategoryTitle = (category: BookCategory) => {
   switch (category) {
