@@ -21,3 +21,16 @@ export const getCategoryTitle = (category: BookCategory) => {
       return '';
   }
 };
+
+export const getSavedBookText = (status: BookStatus) => {
+  switch (status) {
+    case BookStatus.WantToRead:
+      return 'You want to read this book.';
+    case BookStatus.Reading:
+      return 'You are reading this book.';
+    case BookStatus.Finished:
+      return 'You have finished this book.';
+    default:
+      return '';
+  }
+};

@@ -1,9 +1,10 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Pressable, StyleProp, View, ViewStyle } from 'react-native';
 import { Octicons } from '@expo/vector-icons';
 import BookStatus from 'enums/BookStatus.enum';
 import useTheme from 'hooks/useTheme';
 import { useAppSelector } from 'hooks/store';
+import { getSavedBookText } from 'utils/books';
 import { Text, Popup, Menu } from '../Base';
 
 interface SaveBookButtonProps {
@@ -41,28 +42,13 @@ const SaveBookButton: React.FC<SaveBookButtonProps> = ({ bookId, saveBook, remov
     [savedBook, sizing, colors]
   );
 
-  const savedBookText = useMemo(() => {
-    if (!savedBook) return undefined;
-
-    switch (savedBook.status) {
-      case BookStatus.WantToRead:
-        return 'You want to read this book.';
-      case BookStatus.Reading:
-        return 'You are reading this book.';
-      case BookStatus.Finished:
-        return 'You have finished this book.';
-      default:
-        return undefined;
-    }
-  }, [savedBook]);
-
   return (
     <>
       <View style={style}>
         {savedBook ? (
           <Pressable onPress={openPopup}>
             <Text.Secondary>
-              {savedBookText}
+              {getSavedBookText(savedBook.status)}
               <Text.Paragraph style={{ fontFamily: fonts.openSansBold }}> Change</Text.Paragraph>
             </Text.Secondary>
           </Pressable>
