@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Image, Pressable, StyleProp, TextStyle, View } from 'react-native';
+import { Image, Pressable, StyleProp, ViewStyle, View } from 'react-native';
 import { Text } from 'components/Base';
 import useTheme from 'hooks/useTheme';
 import { isEqual } from 'utils/index';
@@ -8,7 +8,7 @@ interface BookCardProps {
   title: string;
   authors?: string[];
   imageUri?: string;
-  style?: StyleProp<TextStyle>;
+  style?: StyleProp<ViewStyle>;
   onPress?: () => void;
 }
 
