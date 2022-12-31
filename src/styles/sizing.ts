@@ -9,6 +9,7 @@ const sizing = {
   fontLarge: 38,
 
   bookListItemHeight: 140,
+  bookListItemWidth: 90,
   bookDetailsImageWidth: 120,
   bookDetailsImageHeight: 200,
 

@@ -1,0 +1,45 @@
+import { FlatList, Image, Pressable, StyleProp, View, ViewStyle } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import SavedBook from 'interfaces/savedBook.interface';
+import TabParamList from 'types/navigation/TabParamList.type';
+import TabRoute from 'enums/TabRoute.enum';
+import useTheme from 'hooks/useTheme';
+import { Text } from '../Base';
+
+interface HorizontalBookListProps {
+  title: string;
+  books: SavedBook[];
+  style?: StyleProp<ViewStyle>;
+}
+
+const HorizontalBookList: React.FC<HorizontalBookListProps> = ({ title, books, style }) => {
+  const { spacing, sizing, fonts } = useTheme();
+  const navigation = useNavigation<StackNavigationProp<TabParamList>>();
+
+  return (
+    <View style={style}>
+      <Text.Title style={{ fontFamily: fonts.openSansSemiBold, marginVertical: spacing.spacer }}>{title}</Text.Title>
+
+      <FlatList
+        data={books}
+        renderItem={({ item }) => (
+          <Pressable onPress={() => navigation.navigate(TabRoute.BookDetails, { id: item.id })}>
+            <View style={{ height: sizing.bookListItemHeight, marginRight: spacing.spacer }}>
+              <Image
+                style={{
+                  width: sizing.bookListItemWidth,
+                  height: sizing.bookListItemHeight,
+                }}
+                source={{ uri: item.thumbnailUri }}
+              />
+            </View>
+          </Pressable>
+        )}
+        horizontal
+      />
+    </View>
+  );
+};
+
+export default HorizontalBookList;

@@ -27,13 +27,14 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
 
   const onSaveBook = (status: BookStatus) => {
     const book = {
+      id,
       title: title as string,
       authors: authors as string,
       thumbnailUri: thumbnailUri as string,
       status,
     };
 
-    dispatch(saveBook({ id, book }));
+    dispatch(saveBook(book));
   };
   const onRemoveBook = () => dispatch(removeBook(id));
 

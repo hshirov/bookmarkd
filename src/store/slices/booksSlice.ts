@@ -1,16 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Dictionary from 'interfaces/dictionary.interface';
-import BookStatus from 'enums/BookStatus.enum';
-
-interface BookShape {
-  title: string;
-  authors?: string;
-  thumbnailUri?: string;
-  status: BookStatus;
-}
+import SavedBook from 'interfaces/savedBook.interface';
 
 interface BooksState {
-  saved: Dictionary<BookShape>;
+  saved: Dictionary<SavedBook>;
 }
 
 const initialState: BooksState = {
@@ -21,8 +14,8 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    saveBook: (state, action: PayloadAction<{ id: string; book: BookShape }>) => {
-      state.saved[action.payload.id] = action.payload.book;
+    saveBook: (state, action: PayloadAction<SavedBook>) => {
+      state.saved[action.payload.id] = action.payload;
     },
     removeBook: (state, action: PayloadAction<string>) => {
       const { [action.payload]: value, ...withoutItem } = state.saved;
