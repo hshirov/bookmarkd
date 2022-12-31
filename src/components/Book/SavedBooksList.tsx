@@ -7,13 +7,13 @@ import TabRoute from 'enums/TabRoute.enum';
 import useTheme from 'hooks/useTheme';
 import { Text } from '../Base';
 
-interface HorizontalBookListProps {
+interface SavedBooksListProps {
   title: string;
   books: SavedBook[];
   style?: StyleProp<ViewStyle>;
 }
 
-const HorizontalBookList: React.FC<HorizontalBookListProps> = ({ title, books, style }) => {
+const SavedBooksList: React.FC<SavedBooksListProps> = ({ title, books, style }) => {
   const { spacing, sizing } = useTheme();
   const navigation = useNavigation<StackNavigationProp<TabParamList>>();
 
@@ -42,4 +42,4 @@ const HorizontalBookList: React.FC<HorizontalBookListProps> = ({ title, books, s
   );
 };
 
-export default HorizontalBookList;
+export default SavedBooksList;

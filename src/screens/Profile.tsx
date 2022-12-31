@@ -9,7 +9,7 @@ import { useAppSelector } from 'hooks/store';
 import { getSavedBooksByStatus } from 'utils/books';
 import { isNonEmptyArr } from 'utils/index';
 import { Container, Menu, ScrollableContainer, Text } from 'components/Base';
-import { HorizontalBookList } from 'components/Book';
+import { SavedBooksList } from 'components/Book';
 
 const Profile: React.FC<TabNavProps<TabRoute.Profile>> = ({ navigation }) => {
   const { sizing, spacing, colors } = useTheme();
@@ -57,12 +57,12 @@ const Profile: React.FC<TabNavProps<TabRoute.Profile>> = ({ navigation }) => {
     <ScrollableContainer style={{ flexGrow: 1, justifyContent: 'space-between' }}>
       <View>
         {hasToReadBooks && (
-          <HorizontalBookList title="Want to read" books={toReadBooks} style={{ marginBottom: spacing.spacer }} />
+          <SavedBooksList title="Want to read" books={toReadBooks} style={{ marginBottom: spacing.spacer }} />
         )}
         {hasReadingBooks && (
-          <HorizontalBookList title="Reading" books={readingBooks} style={{ marginBottom: spacing.spacer }} />
+          <SavedBooksList title="Reading" books={readingBooks} style={{ marginBottom: spacing.spacer }} />
         )}
-        {hasFinishedBooks && <HorizontalBookList title="Finished" books={finishedBooks} />}
+        {hasFinishedBooks && <SavedBooksList title="Finished" books={finishedBooks} />}
       </View>
 
       {menu}

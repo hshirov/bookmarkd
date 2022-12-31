@@ -1,5 +1,5 @@
 import BookCard from './BookCard';
 import SaveBookButton from './SaveBookButton';
-import HorizontalBookList from './HorizontalBookList';
+import SavedBooksList from './SavedBooksList';
 
-export { BookCard, SaveBookButton, HorizontalBookList };
+export { BookCard, SaveBookButton, SavedBooksList };
