@@ -1,11 +1,11 @@
-export const isArr = (val: unknown): boolean => Array.isArray(val);
+export const isArr = (value: unknown) => Array.isArray(value);
 
-export const isStr = (val: unknown): boolean => typeof val === 'string';
+export const isStr = (value: unknown) => typeof value === 'string';
 
-export const isNonEmptyArr = (val: unknown): boolean => isArr(val) && (val as unknown[]).length > 0;
+export const isNonEmptyArr = (value: unknown) => isArr(value) && (value as unknown[]).length > 0;
 
-export const isNonEmptyStr = (val: unknown): boolean => isStr(val) && val !== '';
+export const isNonEmptyStr = (value: unknown) => isStr(value) && value !== '';
 
-export const isEqual = (val1: unknown, val2: unknown): boolean => JSON.stringify(val1) === JSON.stringify(val2);
+export const isEqual = (value1: unknown, value2: unknown) => JSON.stringify(value1) === JSON.stringify(value2);
 
 export const getRandomNumber = (max: number) => Math.floor(Math.random() * max);
