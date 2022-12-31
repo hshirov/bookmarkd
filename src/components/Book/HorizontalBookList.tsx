@@ -14,12 +14,12 @@ interface HorizontalBookListProps {
 }
 
 const HorizontalBookList: React.FC<HorizontalBookListProps> = ({ title, books, style }) => {
-  const { spacing, sizing, fonts } = useTheme();
+  const { spacing, sizing } = useTheme();
   const navigation = useNavigation<StackNavigationProp<TabParamList>>();
 
   return (
     <View style={style}>
-      <Text.Title style={{ fontFamily: fonts.openSansSemiBold, marginVertical: spacing.spacer }}>{title}</Text.Title>
+      <Text.SemiBoldTitle style={{ marginVertical: spacing.spacer }}>{title}</Text.SemiBoldTitle>
 
       <FlatList
         data={books}

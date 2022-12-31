@@ -9,6 +9,7 @@ interface TextProps {
 interface TextComponents {
   Heading: React.FC<TextProps>;
   Title: React.FC<TextProps>;
+  SemiBoldTitle: React.FC<TextProps>;
   Paragraph: React.FC<TextProps>;
   Secondary: React.FC<TextProps>;
 }
@@ -45,6 +46,24 @@ Text.Title = ({ children, style }) => {
       style={[
         {
           fontFamily: fonts.openSansBold,
+          fontSize: sizing.fontSmall,
+        },
+        style,
+      ]}
+    >
+      {children}
+    </Text>
+  );
+};
+
+Text.SemiBoldTitle = ({ children, style }) => {
+  const { fonts, sizing } = useTheme();
+
+  return (
+    <Text
+      style={[
+        {
+          fontFamily: fonts.openSansSemiBold,
           fontSize: sizing.fontSmall,
         },
         style,
