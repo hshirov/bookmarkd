@@ -1,6 +1,7 @@
 enum BookCategory {
-  Fiction = 'fiction',
-  Philosophy = 'philosophy',
+  Fantasy = 'fantasy',
+  Horror = 'horror',
+  Biography = 'biography',
 }
 
 export default BookCategory;

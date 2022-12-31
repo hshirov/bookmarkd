@@ -17,7 +17,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
   const searchInputRef = useRef<TextInput>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const debouncedSearchQuery = useDebounce(searchQuery);
-  const { data, isLoading, isFetchingNextPage, isError, fetchNextPage } = useBooksSearch(debouncedSearchQuery.trim());
+  const { data, isFetching, isError, fetchNextPage } = useBooksSearch(debouncedSearchQuery.trim());
 
   const hasPages = data?.pages[0].items.length !== 0;
 
@@ -46,7 +46,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
               ))}
             </View>
           )}
-          ListFooterComponent={isLoading || isFetchingNextPage ? <ActivityIndicator /> : null}
+          ListFooterComponent={isFetching ? <ActivityIndicator /> : null}
           ListFooterComponentStyle={{ marginTop: spacing.spacer }}
           onEndReachedThreshold={0.5}
           onEndReached={() => fetchNextPage()}
@@ -56,7 +56,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
           <Text.Secondary>Search by book title or author.</Text.Secondary>
         </View>
       ),
-    [hasPages, data, isLoading, isFetchingNextPage, spacing]
+    [hasPages, data, isFetching, spacing]
   );
 
   return (
