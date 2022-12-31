@@ -25,16 +25,17 @@ const SavedBooksList: React.FC<SavedBooksListProps> = ({ title, books, style, te
       <FlatList
         data={books}
         renderItem={({ item }) => (
-          <Pressable onPress={() => navigation.navigate(TabRoute.BookDetails, { id: item.id })}>
-            <View style={{ height: sizing.bookListItemHeight, marginRight: spacing.spacer }}>
-              <Image
-                style={{
-                  width: sizing.bookListItemWidth,
-                  height: sizing.bookListItemHeight,
-                }}
-                source={{ uri: item.thumbnailUri }}
-              />
-            </View>
+          <Pressable
+            onPress={() => navigation.navigate(TabRoute.BookDetails, { id: item.id })}
+            style={{ height: sizing.bookListItemHeight, marginRight: spacing.spacer }}
+          >
+            <Image
+              style={{
+                width: sizing.bookListItemWidth,
+                height: sizing.bookListItemHeight,
+              }}
+              source={{ uri: item.thumbnailUri }}
+            />
           </Pressable>
         )}
         horizontal

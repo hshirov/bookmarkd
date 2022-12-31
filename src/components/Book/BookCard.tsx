@@ -22,16 +22,14 @@ const BookCard: React.FC<BookCardProps> = memo(({ title, authors, imageUri, styl
   const { spacing, sizing } = useTheme();
 
   return (
-    <Pressable onPress={onPress}>
-      <View style={[{ flexDirection: 'row' }, style]}>
-        <View style={{ flex: 1, height: sizing.bookListItemHeight, marginRight: spacing.spacer }}>
-          {imageUri && <Image style={{ height: sizing.bookListItemHeight }} source={{ uri: imageUri }} />}
-        </View>
+    <Pressable onPress={onPress} style={[{ flexDirection: 'row' }, style]}>
+      <View style={{ flex: 1, height: sizing.bookListItemHeight, marginRight: spacing.spacer }}>
+        {imageUri && <Image style={{ height: sizing.bookListItemHeight }} source={{ uri: imageUri }} />}
+      </View>
 
-        <View style={{ flex: 3 }}>
-          <Text.Title>{title}</Text.Title>
-          {authors && authors.map((author) => <Text.Secondary key={author}>{author}</Text.Secondary>)}
-        </View>
+      <View style={{ flex: 3 }}>
+        <Text.Title>{title}</Text.Title>
+        {authors && authors.map((author) => <Text.Secondary key={author}>{author}</Text.Secondary>)}
       </View>
     </Pressable>
   );

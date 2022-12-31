@@ -15,9 +15,7 @@ const Popup: React.FC<PopupProps> = ({ children, isActive, onTapOutside }) => {
   return (
     <Modal visible={isActive} animationType="slide" transparent>
       <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-        <Pressable style={{ flex: 1 }} onPress={onTapOutside}>
-          <View />
-        </Pressable>
+        <Pressable style={{ flex: 1 }} onPress={onTapOutside} />
         <View
           style={[
             {
