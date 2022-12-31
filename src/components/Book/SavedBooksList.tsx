@@ -1,4 +1,4 @@
-import { FlatList, Image, Pressable, StyleProp, View, ViewStyle } from 'react-native';
+import { FlatList, Image, Pressable, StyleProp, TextStyle, View, ViewStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import SavedBook from 'interfaces/savedBook.interface';
@@ -11,15 +11,16 @@ interface SavedBooksListProps {
   title: string;
   books: SavedBook[];
   style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
 }
 
-const SavedBooksList: React.FC<SavedBooksListProps> = ({ title, books, style }) => {
+const SavedBooksList: React.FC<SavedBooksListProps> = ({ title, books, style, textStyle }) => {
   const { spacing, sizing } = useTheme();
   const navigation = useNavigation<StackNavigationProp<TabParamList>>();
 
   return (
     <View style={style}>
-      <Text.SemiBoldTitle style={{ marginVertical: spacing.spacer }}>{title}</Text.SemiBoldTitle>
+      <Text.SemiBoldTitle style={[{ marginVertical: spacing.spacer }, textStyle]}>{title}</Text.SemiBoldTitle>
 
       <FlatList
         data={books}

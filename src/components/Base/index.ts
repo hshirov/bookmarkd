@@ -6,5 +6,6 @@ import TruncatedText from './TruncatedText';
 import Input from './Input';
 import Menu from './Menu';
 import Popup from './Popup';
+import Divider from './Divider';
 
-export { Container, ScrollableContainer, Centered, Text, TruncatedText, Input, Menu, Popup };
+export { Container, ScrollableContainer, Centered, Text, TruncatedText, Input, Menu, Popup, Divider };
