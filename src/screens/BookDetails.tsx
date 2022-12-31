@@ -25,16 +25,14 @@ const BookDetails: React.FC<TabNavProps<TabRoute.BookDetails>> = ({ route }) => 
     ? removeHtmlTags(data?.volumeInfo.description as string)
     : '';
 
-  const onSaveBook = (status: BookStatus) => {
-    const book = {
-      id,
-      thumbnailUri,
-      status,
-      updatedOnTimestamp: Date.now(),
-    };
-
-    dispatch(saveBook(book));
-  };
+  const onSaveBook = (status: BookStatus) =>
+    dispatch(
+      saveBook({
+        id,
+        thumbnailUri,
+        status,
+      })
+    );
   const onRemoveBook = () => dispatch(removeBook(id));
 
   if (isError) {
