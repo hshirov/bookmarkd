@@ -4,6 +4,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { PersistGate } from 'redux-persist/integration/react';
 import { StatusBarManager } from './src/components/Managers';
+import { FallbackScreen } from './src/components/Common';
 import { queryClientConfig } from './src/utils/config/reactQueryConfig';
 import TabNavigation from './src/navigation/TabNavigation';
 import { store, persistor } from './src/store';
@@ -19,7 +20,7 @@ const App = () => {
   const queryClient = new QueryClient(queryClientConfig);
 
   if (!fontsLoaded) {
-    return null;
+    return <FallbackScreen />;
   }
 
   return (
