@@ -10,7 +10,8 @@ import { getRandomNumber, isNonEmptyArr } from 'utils/index';
 import { getSavedBooksByStatus, getCategoryTitle } from 'utils/books';
 import useTheme from 'hooks/useTheme';
 import { useAppSelector } from 'hooks/store';
-import { Divider, ScrollableContainer } from 'components/Base';
+import { Container, Divider, ScrollableContainer } from 'components/Base';
+import { ErrorScreen } from 'components/Common';
 import { HorizontalBookList, SavedBooksList } from 'components/Book';
 
 const randomStartIndexMax = 150;
@@ -23,20 +24,40 @@ const Home: React.FC<TabNavProps<TabRoute.Home>> = () => {
   const {
     data: fantasyData,
     isFetching: fantasyIsFetching,
+    isError: fantasyIsError,
     fetchNextPage: fantasyFetchNextPage,
+    refetch: refetchFantasy,
   } = useBooksByCategory(BookCategory.Fantasy, getRandomNumber(randomStartIndexMax));
 
   const {
     data: horrorData,
     isFetching: horrorIsFetching,
+    isError: horrorIsError,
     fetchNextPage: horrorFetchNextPage,
+    refetch: refetchHorror,
   } = useBooksByCategory(BookCategory.Horror, getRandomNumber(randomStartIndexMax));
 
   const {
     data: biographyData,
     isFetching: biographyIsFetching,
+    isError: biographyIsError,
     fetchNextPage: biographyFetchNextPage,
+    refetch: refetchBiography,
   } = useBooksByCategory(BookCategory.Biography, getRandomNumber(randomStartIndexMax));
+
+  const refetchAll = () => {
+    refetchFantasy();
+    refetchHorror();
+    refetchBiography();
+  };
+
+  if (fantasyIsError || horrorIsError || biographyIsError) {
+    return (
+      <Container>
+        <ErrorScreen hasTryAgainButton onPressTryAgain={refetchAll} />
+      </Container>
+    );
+  }
 
   return (
     <ScrollableContainer style={{ paddingBottom: spacing.spacer }}>
