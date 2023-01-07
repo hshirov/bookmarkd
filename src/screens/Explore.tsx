@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useMemo } from 'react';
-import { ActivityIndicator, FlatList, View, TextInput } from 'react-native';
+import { ActivityIndicator, FlatList, View, TextInput, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
 import TabRoute from 'enums/TabRoute.enum';
@@ -52,11 +52,15 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
         onEndReached={() => fetchNextPage()}
       />
     ) : (
-      <View style={{ alignItems: 'center' }}>
+      <ScrollView
+        contentContainerStyle={{ alignItems: 'center' }}
+        keyboardShouldPersistTaps="handled"
+        scrollEnabled={false}
+      >
         <Text.Secondary>
           {isNonEmptyStr(debouncedSearchQuery) ? 'No results found.' : 'Search by book title or author.'}
         </Text.Secondary>
-      </View>
+      </ScrollView>
     );
   }, [data, isFetching, spacing]);
 
@@ -71,7 +75,13 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
         }}
       >
         <Octicons name="search" size={sizing.iconMedium} color={colors.text} style={{ marginRight: spacing.spacer }} />
-        <Input value={searchQuery} onChangeText={setSearchQuery} ref={searchInputRef} style={{ flex: 1 }} />
+        <Input
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          returnKeyType="search"
+          ref={searchInputRef}
+          style={{ flex: 1 }}
+        />
       </View>
 
       {isError ? <ErrorScreen /> : content}

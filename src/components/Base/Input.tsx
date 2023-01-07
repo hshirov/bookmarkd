@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleProp, TextInput, TextStyle } from 'react-native';
+import { ReturnKeyTypeOptions, StyleProp, TextInput, TextStyle } from 'react-native';
 import useTheme from 'hooks/useTheme';
 import Theme from 'enums/Theme.enum';
 
 interface InputProps {
   value: string;
   autoCorrect?: boolean;
+  returnKeyType?: ReturnKeyTypeOptions;
   style?: StyleProp<TextStyle>;
   onChangeText: (text: string) => void;
   // eslint-disable-next-line
@@ -13,7 +14,7 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = React.forwardRef<TextInput, InputProps>(
-  ({ value, autoCorrect = false, style, onChangeText }, ref) => {
+  ({ value, autoCorrect = false, returnKeyType = 'default', style, onChangeText }, ref) => {
     const { theme, colors, spacing, sizing } = useTheme();
 
     return (
@@ -29,6 +30,7 @@ const Input: React.FC<InputProps> = React.forwardRef<TextInput, InputProps>(
           style,
         ]}
         keyboardAppearance={theme === Theme.Dark ? 'dark' : 'light'}
+        returnKeyType={returnKeyType}
         autoCorrect={autoCorrect}
         value={value}
         ref={ref}
