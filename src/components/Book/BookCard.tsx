@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { Image, Pressable, StyleProp, ViewStyle, View } from 'react-native';
-import { Text } from 'components/Base';
 import useTheme from 'hooks/useTheme';
 import { isEqual } from 'utils/index';
+import { Text } from '../Base';
 
 interface BookCardProps {
   title: string;

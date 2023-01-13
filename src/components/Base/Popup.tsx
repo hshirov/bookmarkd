@@ -1,6 +1,6 @@
 import { Modal, Pressable, View } from 'react-native';
-import useTheme from 'hooks/useTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import useTheme from 'hooks/useTheme';
 
 interface PopupProps {
   children: React.ReactNode;
