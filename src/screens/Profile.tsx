@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import TabRoute from 'enums/TabRoute.enum';
@@ -15,30 +14,24 @@ const Profile: React.FC<TabNavProps<TabRoute.Profile>> = ({ navigation }) => {
   const { sizing, spacing, colors } = useTheme();
   const { saved: savedBooks } = useAppSelector((state) => state.books);
 
-  const toReadBooks = useMemo(() => getSavedBooksByStatus(savedBooks, BookStatus.WantToRead), [savedBooks]);
-  const readingBooks = useMemo(() => getSavedBooksByStatus(savedBooks, BookStatus.Reading), [savedBooks]);
-  const finishedBooks = useMemo(() => getSavedBooksByStatus(savedBooks, BookStatus.Finished), [savedBooks]);
+  const toReadBooks = getSavedBooksByStatus(savedBooks, BookStatus.WantToRead);
+  const readingBooks = getSavedBooksByStatus(savedBooks, BookStatus.Reading);
+  const finishedBooks = getSavedBooksByStatus(savedBooks, BookStatus.Finished);
 
-  const hasToReadBooks = useMemo(() => isNonEmptyArr(toReadBooks), [toReadBooks]);
-  const hasReadingBooks = useMemo(() => isNonEmptyArr(readingBooks), [readingBooks]);
-  const hasFinishedBooks = useMemo(() => isNonEmptyArr(finishedBooks), [finishedBooks]);
-  const hasNoBooks = useMemo(
-    () => !hasToReadBooks && !hasReadingBooks && !hasFinishedBooks,
-    [hasToReadBooks, hasReadingBooks, hasFinishedBooks]
-  );
+  const hasToReadBooks = isNonEmptyArr(toReadBooks);
+  const hasReadingBooks = isNonEmptyArr(readingBooks);
+  const hasFinishedBooks = isNonEmptyArr(finishedBooks);
+  const hasNoBooks = !hasToReadBooks && !hasReadingBooks && !hasFinishedBooks;
 
-  const menu = useMemo(
-    () => (
-      <Menu>
-        <Menu.Divider />
-        <Menu.Item
-          text="Settings"
-          icon={<Entypo name="cog" size={sizing.iconLarge} color={colors.text} />}
-          onPress={() => navigation.navigate(TabRoute.Settings)}
-        />
-      </Menu>
-    ),
-    [sizing, colors]
+  const renderMenu = () => (
+    <Menu>
+      <Menu.Divider />
+      <Menu.Item
+        text="Settings"
+        icon={<Entypo name="cog" size={sizing.iconLarge} color={colors.text} />}
+        onPress={() => navigation.navigate(TabRoute.Settings)}
+      />
+    </Menu>
   );
 
   if (hasNoBooks) {
@@ -48,7 +41,7 @@ const Profile: React.FC<TabNavProps<TabRoute.Profile>> = ({ navigation }) => {
           <Text.Paragraph>You will see your saved books here.</Text.Paragraph>
         </View>
 
-        {menu}
+        {renderMenu()}
       </Container>
     );
   }
@@ -65,7 +58,7 @@ const Profile: React.FC<TabNavProps<TabRoute.Profile>> = ({ navigation }) => {
         {hasFinishedBooks && <SavedBooksList title="Finished" books={finishedBooks} />}
       </View>
 
-      {menu}
+      {renderMenu()}
     </ScrollableContainer>
   );
 };

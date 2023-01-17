@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getFocusedRouteNameFromRoute, ParamListBase, RouteProp, StackActions } from '@react-navigation/native';
@@ -19,10 +18,8 @@ const Header: React.FC<HeaderProps> = ({ route, navigation, options }) => {
   const { colors, spacing, sizing } = useTheme();
   const insets = useSafeAreaInsets();
   const title = getHeaderTitle(options, route.name);
-  const shouldShowBackButton = useMemo(() => {
-    const routeName = getFocusedRouteNameFromRoute(route);
-    return routeName === TabRoute.BookDetails || routeName === TabRoute.Settings;
-  }, [route]);
+  const routeName = getFocusedRouteNameFromRoute(route);
+  const shouldShowBackButton = routeName === TabRoute.BookDetails || routeName === TabRoute.Settings;
 
   return (
     <View

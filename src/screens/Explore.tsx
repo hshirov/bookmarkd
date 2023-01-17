@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useMemo } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { ActivityIndicator, FlatList, View, TextInput, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
@@ -26,7 +26,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
     }, [searchInputRef])
   );
 
-  const content = useMemo(() => {
+  const renderContent = () => {
     const hasPages = !!data?.pages[0]?.items?.length;
 
     return hasPages || isFetching ? (
@@ -62,7 +62,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
         </Text.Secondary>
       </ScrollView>
     );
-  }, [data, isFetching, spacing]);
+  };
 
   return (
     <Container>
@@ -84,7 +84,7 @@ const Explore: React.FC<TabNavProps<TabRoute.Explore>> = ({ navigation }) => {
         />
       </View>
 
-      {isError ? <ErrorScreen /> : content}
+      {isError ? <ErrorScreen /> : renderContent()}
     </Container>
   );
 };
