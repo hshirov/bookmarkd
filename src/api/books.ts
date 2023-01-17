@@ -1,4 +1,4 @@
-import BookCategory from 'src/enums/BookCategory.enum';
+import BookCategory from 'enums/BookCategory.enum';
 import axiosInstance from './axios';
 
 const booksFields = 'items/id,items/volumeInfo(title,authors,description,pageCount,categories,imageLinks)';

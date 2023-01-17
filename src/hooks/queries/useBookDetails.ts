@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useQuery } from 'react-query';
-import { GetBookResponse } from 'src/interfaces/api/responses.interface';
+import { GetBookResponse } from 'interfaces/api/responses.interface';
 import { getBook } from 'api/books';
 
 const useBookDetails = (id: string) => {
